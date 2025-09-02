@@ -148,6 +148,14 @@ button:hover {
     box-shadow: 0 0 15px rgba(33, 150, 243, 0.7);
 }
 
+#show-answers-btn {
+    background-color: #ff9800;
+}
+
+#show-answers-btn:hover {
+    background-color: #e68a00;
+}
+
 @keyframes highlight-button {
     from {
         background-color: #2196F3;
@@ -173,6 +181,10 @@ button:hover {
 
 .result.failure {
     color: #ff8e8e;
+}
+
+.result.info {
+    color: #ffd97f;
 }
 
 /* Settings styles */

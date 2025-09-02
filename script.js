@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const gridElement = document.getElementById('grid');
     const startButton = document.getElementById('start-btn');
     const resetButton = document.getElementById('reset-btn');
+    const showAnswersButton = document.getElementById('show-answers-btn');
     const resultElement = document.getElementById('result');
     const settingsButton = document.getElementById('settings-btn');
     const settingsPanel = document.getElementById('settings-panel');
@@ -57,9 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
         userSelections = [];
         patternToRemember = [];
         canSelect = false;
+        answersRevealed = false;
         
-        // Show the reset button when the game starts
+        // Reset Reveal button text
+        showAnswersButton.textContent = 'Reveal';
+        
+        // Show the reset and show answers buttons when the game starts
         resetButton.style.display = 'inline-block';
+        showAnswersButton.style.display = 'inline-block';
         
         // Update UI
         startButton.style.display = 'none';
@@ -176,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listeners
     startButton.addEventListener('click', startRound);
     resetButton.addEventListener('click', startRound);
+    showAnswersButton.addEventListener('click', showAnswers);
     settingsButton.addEventListener('click', toggleSettings);
     
     // Make sure sliders work with both input and change events
@@ -184,11 +191,55 @@ document.addEventListener('DOMContentLoaded', function() {
     flashDurationSlider.addEventListener('input', updateFlashDuration);
     flashDurationSlider.addEventListener('change', updateFlashDuration);
     
+    // Toggle showing/hiding answers
+    let answersRevealed = false;
+    
+    function showAnswers() {
+        if (patternToRemember.length > 0) {
+            const tiles = document.querySelectorAll('.tile');
+            
+            if (!answersRevealed) {
+                // Show answers
+                answersRevealed = true;
+                canSelect = false;
+                
+                // Highlight the correct tiles
+                patternToRemember.forEach(tileIndex => {
+                    tiles[tileIndex].classList.add('flash');
+                });
+                
+                // Add an explanation to the result area
+                resultElement.textContent = 'Answers revealed';
+                resultElement.className = 'result info';
+                
+                // Change button text (optional visual cue)
+                showAnswersButton.textContent = 'Hide';
+            } else {
+                // Hide answers
+                answersRevealed = false;
+                canSelect = true;
+                
+                // Remove highlighting from tiles
+                patternToRemember.forEach(tileIndex => {
+                    tiles[tileIndex].classList.remove('flash');
+                });
+                
+                // Clear the result message
+                resultElement.textContent = '';
+                resultElement.className = 'result';
+                
+                // Change button text back
+                showAnswersButton.textContent = 'Reveal';
+            }
+        }
+    }
+    
     // Initialize the game
     createGrid();
     updateTilesCount();
     updateFlashDuration();
     
-    // Hide the reset button before the game starts
+    // Hide the reset and show answers buttons before the game starts
     resetButton.style.display = 'none';
+    showAnswersButton.style.display = 'none';
 });

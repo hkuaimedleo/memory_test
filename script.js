@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const gridSize = 5;
     const totalTiles = gridSize * gridSize;
     let tilesPerRound = 5; // Default number of tiles
-    let flashDuration = 1.0; // Default flash duration in seconds
+    let flashDuration = 0.5; // Default flash duration in seconds
     let patternToRemember = [];
     let userSelections = [];
     let canSelect = false;

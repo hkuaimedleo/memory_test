@@ -1,0 +1,25 @@
+Memory Test Game
+=============
+
+Link
+-----
+https://hkuaimedleo.github.io/memory_test/
+
+
+Instructions
+-----
+You are given a 5 by 5 grid. When I click the button, some of the tiles will flash in yellow, but only for a short duration.
+Your task is to remember the location of the yellow grids and mark them on the paper that is given to you.
+
+
+Configurations
+-----
+1. Simple Mode    (For individual students)
+- 6 - 7 tiles in yellow
+- 0.4 - 0.5 seconds
+
+2. Difficult Mode    (For students working in groups, allow them to discuss a strategy)
+- 12 tiles
+- 0.1 seconds
+
+
